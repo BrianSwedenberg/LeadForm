@@ -142,3 +142,15 @@ Do not proceed until the user explicitly approves. "Looks good" or "go ahead" is
 - Do not guess at design intent — leave a `// DESIGN QUESTION:` comment
 - Do not guess at data schema — leave a `// ASSUMPTION:` comment with your reasoning
 - A short clarifying question is always better than 100 lines of wrong code
+
+## 10. Documentation Workflow
+
+When completing a feature, module, or significant code change:
+- Create or update a corresponding Notion page in the [Project Docs] database
+- Page should include: what was built, key decisions made, and any known limitations
+- Use the existing page structure: Summary → Technical Details → Open Questions
+
+## 11. Notion Workspace Structure
+- Technical docs live in: https://www.notion.so/LeadForm-Documentation-33a8d07d042280789f19ddc875a282a7
+- ADRs (Architecture Decision Records) go in: https://www.notion.so/LeadForm-ADR-33a8d07d042280c4a0faf2ec7ea7dccc?source=copy_link
+- Do not create top-level pages — always nest under the relevant parent
