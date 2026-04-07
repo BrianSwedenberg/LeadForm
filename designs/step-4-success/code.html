@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Willow Water - Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#474747",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-bright": "#f9f9f9",
+                        "primary": "#000000",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "secondary-container": "#d5d4d4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffffff",
+                        "primary-fixed": "#5e5e5e",
+                        "tertiary-fixed": "#5d5f5f",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-fixed-variant": "#3b3b3c",
+                        "on-tertiary-fixed-variant": "#e2e2e2",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#c6c6c6",
+                        "tertiary-fixed-dim": "#454747",
+                        "on-tertiary": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#3b3b3b",
+                        "on-primary": "#e2e2e2",
+                        "surface-dim": "#dadada",
+                        "on-secondary-container": "#1b1c1c",
+                        "on-tertiary-fixed": "#ffffff",
+                        "on-primary-fixed": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "surface-tint": "#5e5e5e",
+                        "secondary-fixed": "#c7c6c6",
+                        "on-error-container": "#410002",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9f9",
+                        "outline": "#777777",
+                        "inverse-primary": "#c6c6c6",
+                        "secondary-fixed-dim": "#acabab",
+                        "on-surface-variant": "#474747",
+                        "on-primary-container": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#737575",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-surface": "#2f3131",
+                        "background": "#f9f9f9",
+                        "inverse-on-surface": "#f1f1f1",
+                        "tertiary": "#3a3c3c",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary": "#5e5e5e"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_12px_32px_rgba(26,28,28,0.06)]">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-neutral-900" data-icon="water_drop">water_drop</span>
+<span class="text-neutral-900 font-manrope font-extrabold uppercase tracking-widest text-sm">Willow Water</span>
+</div>
+<button class="hover:bg-neutral-100 transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined text-neutral-900" data-icon="close">close</span>
+</button>
+</div>
+<div class="bg-neutral-100 h-px"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-6 flex flex-col items-center justify-center max-w-xl mx-auto w-full">
+<!-- Step Indicator (Linear Progress) -->
+<div class="w-full flex gap-1 mb-12">
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+</div>
+<!-- Confirmation Card -->
+<div class="w-full space-y-8 text-center">
+<!-- Reassuring Visual -->
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm surface-container-low group">
+<img alt="Clean minimalist glass of water on a stone surface with soft morning light" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist still life of a crystalline glass of water on a textured grey stone surface with soft, diffused architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2TeTemzNuqXkxJOpENhMnk5VWQogDWedZuSnWQDYrk_UVIol4DmHer0J_ZYHxRjRjP0b1NaRvD-hSMfCiIF2AAPREvzOnDKRa4tlsJZDtpgVCSA1KexgEVC__dd8uNCJVtDtr78xYEZb-lP9hgdkJcrHa5NbgX9PiUQG0WPbQGB-OyOyepSpdM6qnmWUm0X463vI0EQzj3T_0meT1vR27zs-d3_VEc5AkzUxt1uIA0jkAODx-hDn0u-wABh1IjLL_kgvwcoSOunXW"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<div class="bg-surface-container-lowest rounded-full p-6 shadow-xl">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Typography Content -->
+<div class="space-y-4">
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface leading-tight">
+                    Thank you! Your request has been received.
+                </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed px-2 font-body">
+                    A Willow Water Solutions representative will reach out to you shortly to schedule your free water test.
+                </p>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary-container py-5 px-8 rounded-full font-bold text-lg shadow-lg active:scale-95 transition-all duration-200">
+                    Return to Home
+                </button>
+</div>
+</div>
+<!-- Contextual Support Section -->
+<div class="mt-16 w-full p-6 rounded-xl bg-surface-container-low flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
+</div>
+<div class="flex-1">
+<p class="text-xs uppercase tracking-widest font-bold text-primary-fixed-dim mb-1">Need immediate help?</p>
+<p class="text-sm font-medium text-on-surface">Our team is available 24/7 for urgent water quality inquiries.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed for focused confirmation screen per Rule) -->
+<!-- The BottomNavBar is excluded as this is a "Success/Confirmation" splash screen which represents a temporary departure from the main flow. -->
+<!-- Status Bar (Mobile-specific aesthetic) -->
+<div class="fixed bottom-0 w-full h-1.5 bg-primary-container/10">
+<div class="h-full bg-primary w-full origin-left"></div>
+</div>
+</body></html>
