@@ -233,7 +233,7 @@ export async function submitLead(payload: LeadPayload): Promise\<void\> {
   first_name: string,  
   last_name: string,  
   email: string,  
-  phone: string,              // TODO — required or optional?
+  phone: string,       
 
   // Attribution (auto-captured, not shown to user)  
   utm_source: string | null,  
