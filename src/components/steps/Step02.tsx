@@ -30,7 +30,7 @@ export default function Step02() {
   }
 
   return (
-    <div className="flex flex-col h-full max-w-xl mx-auto w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full max-w-xl mx-auto w-full">
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
         <div className="mb-8">
@@ -46,8 +46,7 @@ export default function Step02() {
           </h1>
         </div>
 
-        <form id="step02-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6">
             <Input
               label="First Name"
               placeholder="Enter your first name"
@@ -74,7 +73,6 @@ export default function Step02() {
               {...register('email')}
             />
           </div>
-        </form>
 
         {/* Discount badge */}
         <div className="mt-10 flex justify-center">
@@ -94,7 +92,7 @@ export default function Step02() {
 
       {/* Bottom action */}
       <div className="shrink-0 bg-white/90 backdrop-blur-lg border-t border-surface-container-high px-6 py-4 flex flex-col gap-3">
-        <Button type="submit" form="step02-form">
+        <Button type="submit">
           Next
           <span className="material-symbols-outlined text-base">arrow_forward</span>
         </Button>
@@ -113,6 +111,6 @@ export default function Step02() {
           .
         </p>
       </div>
-    </div>
+    </form>
   )
 }

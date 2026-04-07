@@ -89,7 +89,7 @@ export default function Step03() {
   }
 
   return (
-    <div className="flex flex-col h-full max-w-xl mx-auto w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full max-w-xl mx-auto w-full">
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
         <div className="mb-8">
@@ -108,7 +108,7 @@ export default function Step03() {
           </p>
         </div>
 
-        <form id="step03-form" onSubmit={handleSubmit(onSubmit)}>
+        <div>
           {/* Phone */}
           <section className="mb-6 bg-surface-container-low p-5 rounded-xl">
             <label
@@ -220,7 +220,7 @@ export default function Step03() {
               {submissionError}
             </div>
           )}
-        </form>
+        </div>
       </div>
 
       {/* Bottom action */}
@@ -238,13 +238,12 @@ export default function Step03() {
         </button>
         <Button
           type="submit"
-          form="step03-form"
           isLoading={isSubmitting}
           className="flex-1"
         >
           Submit
         </Button>
       </div>
-    </div>
+    </form>
   )
 }
