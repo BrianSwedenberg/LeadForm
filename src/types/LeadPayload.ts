@@ -5,7 +5,7 @@ export interface LeadPayload {
     water_source: string | null
     taste_odor: string | null
     timeline: string | null
-    financing: string | null
+    financing: boolean | null
   }
 
   // Contact + survey fields
