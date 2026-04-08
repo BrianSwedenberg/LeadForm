@@ -1,0 +1,28 @@
+Table Leads {
+  LeadID int [primary key, increment]
+  first_name string
+  last_name string
+  zip_code string
+  phone int
+  email string
+  address1 string
+  address2 string
+  city string
+  state string
+  zip string
+
+}
+
+Table Leads_Metadata {
+  id uuid [primary key, increment]
+  LeadID int
+  utm_medium string
+  utm_source string
+  utm_campaign string
+  utm_term string
+  utm_content string
+  lead_form_survey_answers json
+
+}
+
+Ref: "Leads_Metadata"."LeadID" - "Leads"."LeadID"
