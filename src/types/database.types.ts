@@ -1,10 +1,12 @@
 // Hand-authored types derived from supabase/migrations/20260408000000_initial_schema.sql
+// and 20260408000001_add_submitted_at_and_referrer.sql
 // Re-generate this file (or replace with `supabase gen types typescript`) after any schema change.
 
 export interface Database {
   public: {
     Tables: {
       Leads: {
+        Relationships: []
         Row: {
           LeadID: number
           first_name: string | null
@@ -17,6 +19,7 @@ export interface Database {
           city: string | null
           state: string | null
           zip: string | null
+          submitted_at: string | null
         }
         Insert: {
           LeadID?: number
@@ -30,6 +33,7 @@ export interface Database {
           city?: string | null
           state?: string | null
           zip?: string | null
+          submitted_at?: string | null
         }
         Update: {
           LeadID?: number
@@ -43,9 +47,11 @@ export interface Database {
           city?: string | null
           state?: string | null
           zip?: string | null
+          submitted_at?: string | null
         }
       }
       Leads_Metadata: {
+        Relationships: []
         Row: {
           id: string
           LeadID: number | null
@@ -55,6 +61,7 @@ export interface Database {
           utm_term: string | null
           utm_content: string | null
           lead_form_survey_answers: Record<string, unknown> | null
+          referrer: string | null
         }
         Insert: {
           id?: string
@@ -65,6 +72,7 @@ export interface Database {
           utm_term?: string | null
           utm_content?: string | null
           lead_form_survey_answers?: Record<string, unknown> | null
+          referrer?: string | null
         }
         Update: {
           id?: string
@@ -75,6 +83,7 @@ export interface Database {
           utm_term?: string | null
           utm_content?: string | null
           lead_form_survey_answers?: Record<string, unknown> | null
+          referrer?: string | null
         }
       }
     }
