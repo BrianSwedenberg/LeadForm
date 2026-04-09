@@ -18,13 +18,12 @@ Before writing any code, do the following in order:
 
 ## 2. Current Phase
 
-**Phase 1 — n8n webhook submission**
+**Phase 2 — Supabase**
 
-- Use the n8n webhook endpoint defined in `SPEC.md` Section 6 for all form submissions
-- Do **not** implement the Supabase client or write any migration files
-- The Supabase schema in `SPEC.md` is for reference only — it informs field naming, nothing else
-
-> When Phase 2 begins, this section will be updated. Do not make assumptions about phase transitions.
+- All form submissions go through `submitLead.ts` → `supabase.rpc('submit_lead', ...)`
+- The `submit_lead()` SECURITY DEFINER function lives in `supabase/migrations/20260408000003_submit_lead_fn.sql` and is applied to the remote DB
+- Do **not** revert to the n8n webhook path — the commented Phase 1 block in `submitLead.ts` is kept for reference only
+- Supabase project: **WaterCRM** (`kesxpzvfnqdbrfxxlxua`); all 4 migrations are applied remotely
 
 ---
 

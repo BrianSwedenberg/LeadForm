@@ -30,37 +30,27 @@ import { getSupabaseClient } from './supabase'
 export async function submitLead(payload: LeadPayload): Promise<void> {
   const supabase = getSupabaseClient()
 
-  // Step 1: insert the lead and get back the generated LeadID
-  const { data: leadRow, error: leadError } = await supabase
-    .from('Leads')
-    .insert({
-      first_name: payload.first_name,
-      last_name: payload.last_name,
-      zip_code: payload.zip_code,
-      phone: payload.phone,
-      email: payload.email,
-      submitted_at: payload.submitted_at,
-    })
-    .select('LeadID')
-    .single()
+  // Calls the submit_lead() SECURITY DEFINER function, which inserts into
+  // Leads and Leads_Metadata atomically. Running as the function owner avoids
+  // the need for a SELECT policy on either table for the anon role.
+  // The cast to `any` is needed because database.types.ts doesn't enumerate
+  // RPCs — supabase-js otherwise types the args as `undefined`.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabase.rpc as any)('submit_lead', {
+    p_first_name:     payload.first_name,
+    p_last_name:      payload.last_name,
+    p_zip_code:       payload.zip_code,
+    p_phone:          payload.phone,
+    p_email:          payload.email,
+    p_submitted_at:   payload.submitted_at,
+    p_utm_source:     payload.utm_source,
+    p_utm_medium:     payload.utm_medium,
+    p_utm_campaign:   payload.utm_campaign,
+    p_referrer:       payload.referrer,
+    p_survey_answers: payload.Metadata,
+  })
 
-  if (leadError) {
-    throw new Error(leadError.message)
-  }
-
-  // Step 2: insert metadata linked to the new lead
-  const { error: metaError } = await supabase
-    .from('Leads_Metadata')
-    .insert({
-      LeadID: leadRow.LeadID,
-      utm_source: payload.utm_source,
-      utm_medium: payload.utm_medium,
-      utm_campaign: payload.utm_campaign,
-      referrer: payload.referrer,
-      lead_form_survey_answers: payload.Metadata,
-    })
-
-  if (metaError) {
-    throw new Error(metaError.message)
+  if (error) {
+    throw new Error(error.message)
   }
 }
