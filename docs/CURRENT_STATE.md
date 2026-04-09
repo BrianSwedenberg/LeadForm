@@ -58,6 +58,9 @@ Form is live on Vercel and submitting leads to Supabase successfully.
 | utm_content | TEXT | |
 | lead_form_survey_answers | JSONB | own_rent, water_source, taste_odor, timeline, financing |
 | referrer | TEXT | document.referrer at mount time |
+| full_domain | TEXT | window.location.href at submission time (e.g. https://www.example.com/heloc) |
+| lead_submission_page | TEXT | window.location.pathname at submission time (e.g. /heloc) |
+| root_domain | TEXT | window.location.hostname at submission time (e.g. example.com) |
 
 ### RLS
 
@@ -69,7 +72,7 @@ Both tables have RLS enabled. Policy on both: `"Allow anonymous inserts"` — an
 Inserts into `Leads` then `Leads_Metadata` atomically. Returns void.
 `GRANT EXECUTE ... TO anon` — callable by the anonymous Supabase key.
 
-**Parameters:** `p_first_name`, `p_last_name`, `p_zip_code`, `p_phone`, `p_email`, `p_submitted_at`, `p_utm_source`, `p_utm_medium`, `p_utm_campaign`, `p_referrer`, `p_survey_answers` (JSONB)
+**Parameters:** `p_first_name`, `p_last_name`, `p_zip_code`, `p_phone`, `p_email`, `p_submitted_at`, `p_utm_source`, `p_utm_medium`, `p_utm_campaign`, `p_referrer`, `p_survey_answers` (JSONB), `p_full_domain`, `p_lead_submission_page`, `p_root_domain`
 
 ### Migrations applied (all 4)
 
@@ -79,6 +82,7 @@ Inserts into `Leads` then `Leads_Metadata` atomically. Returns void.
 | `20260408000001_add_submitted_at_and_referrer.sql` | Adds submitted_at to Leads, referrer to Leads_Metadata |
 | `20260408000002_fix_rls_anon_insert_leads.sql` | Re-establishes RLS policies idempotently |
 | `20260408000003_submit_lead_fn.sql` | Creates submit_lead() SECURITY DEFINER function |
+| `20260409000000_add_page_attribution_fields.sql` | Adds full_domain, lead_submission_page, root_domain to Leads_Metadata; updates submit_lead() signature |
 
 ---
 

@@ -23,4 +23,9 @@ export interface LeadPayload {
   utm_campaign: string | null
   referrer: string | null
   submitted_at: string // ISO 8601
+
+  // Page attribution — auto-captured from window.location at submission time
+  full_domain: string | null           // e.g. https://www.example.com/heloc
+  lead_submission_page: string | null  // e.g. /heloc
+  root_domain: string | null           // e.g. example.com
 }

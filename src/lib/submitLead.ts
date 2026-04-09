@@ -46,8 +46,11 @@ export async function submitLead(payload: LeadPayload): Promise<void> {
     p_utm_source:     payload.utm_source,
     p_utm_medium:     payload.utm_medium,
     p_utm_campaign:   payload.utm_campaign,
-    p_referrer:       payload.referrer,
-    p_survey_answers: payload.Metadata,
+    p_referrer:               payload.referrer,
+    p_survey_answers:         payload.Metadata,
+    p_full_domain:            payload.full_domain,
+    p_lead_submission_page:   payload.lead_submission_page,
+    p_root_domain:            payload.root_domain,
   })
 
   if (error) {

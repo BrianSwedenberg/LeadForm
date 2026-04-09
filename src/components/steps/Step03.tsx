@@ -63,6 +63,9 @@ export default function Step03() {
       utm_campaign: params.get('utm_campaign'),
       referrer: document.referrer || null,
       submitted_at: new Date().toISOString(),
+      full_domain: window.location.href,
+      lead_submission_page: window.location.pathname,
+      root_domain: window.location.hostname,
     }
 
     setIsSubmitting(true)
