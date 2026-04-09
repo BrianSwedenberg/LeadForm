@@ -1,3 +1,17 @@
+## Project Status
+
+### ✅ Phase 1 — Complete
+4 step lead form run locally that submitted leads to n8n hook
+
+### ✅ Phase 2 — Complete  
+4 step lead form that is live on prod (vercel) and submits leads to supabase successfully 
+
+### 🔄 Phase 3 — In Progress
+See PHASE_3.md for active task scope.
+
+
+
+
 # **Project Spec — \[Water Lead Form\]**
 
 **For Claude Code**: Read this entire file before writing any code. When instructions here conflict with assumptions, always defer to this spec. Ask for clarification before proceeding if any required section is marked `TODO`.

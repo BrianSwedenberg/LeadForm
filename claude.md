@@ -153,3 +153,31 @@ When completing a feature, module, or significant code change:
 - Technical docs live in: https://www.notion.so/LeadForm-Documentation-33a8d07d042280789f19ddc875a282a7
 - ADRs (Architecture Decision Records) go in: https://www.notion.so/LeadForm-ADR-33a8d07d042280c4a0faf2ec7ea7dccc?source=copy_link
 - Do not create top-level pages — always nest under the relevant parent
+
+## Documentation Protocol
+
+### CURRENT_STATE.md — Source of Truth
+There is a `CURRENT_STATE.md` file in the /docs/ directory of this project. It is the 
+single source of truth for the current state of the application. Always read 
+it at the start of any session before doing anything else.
+
+### When to update CURRENT_STATE.md
+Update it at the end of every task, or any time you make a change that affects:
+- The database schema (columns added, types changed, RLS policies updated)
+- The API or submission endpoint
+- Environment variables or configuration
+- The deployment state (what is live on Vercel right now)
+- TypeScript types or interfaces that reflect the data model
+- Any completed milestone or phase
+
+### How to update it
+- Edit in place — do not append a history log, do not create dated entries
+- It should always reflect right now, not a timeline of changes
+- Be specific: column names, types, nullability — not just "schema was updated"
+- If something was removed, remove it from the doc too
+- Keep it concise. It is a briefing document, not a narrative
+
+### What does not belong in CURRENT_STATE.md
+- Reasons why decisions were made (that lives in SPEC.md)
+- Task lists or to-dos (keep those in the task file for the current phase)
+- Anything speculative or in-progress — only confirmed, working state
