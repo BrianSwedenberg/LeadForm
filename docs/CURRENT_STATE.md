@@ -7,8 +7,8 @@
 
 ## Phase
 
-**Phase 2 — Complete**
-Form is live on Vercel and submitting leads to Supabase successfully.
+**Phase 3 — Complete**
+Attribution fields (full_domain, lead_submission_page, root_domain) added to Leads_Metadata, migration applied, and verified via test submission in Supabase.
 
 ---
 
