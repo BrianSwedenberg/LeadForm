@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { step1Schema, type Step1Fields } from '../../lib/validation'
@@ -6,6 +7,7 @@ import ProgressBar from '../ui/ProgressBar'
 import Button from '../ui/Button'
 
 export default function Step01() {
+  const [isChecking, setIsChecking] = useState(false)
   const { formData, setField, goToNextStep, currentStep } = useFormStore()
 
   const {
@@ -13,6 +15,7 @@ export default function Step01() {
     handleSubmit,
     setValue,
     watch,
+    setError,
     formState: { errors },
   } = useForm<Step1Fields>({
     resolver: zodResolver(step1Schema),
@@ -28,7 +31,28 @@ export default function Step01() {
   const waterSource = watch('water_source')
   const tasteOdor = watch('taste_odor')
 
-  const onSubmit = (data: Step1Fields) => {
+  const onSubmit = async (data: Step1Fields) => {
+    const url = import.meta.env.VITE_ZIP_VALIDATE_URL
+    setIsChecking(true)
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ zip: data.zip_code }),
+      })
+      const result = await res.json()
+      if (!result.allowed) {
+        setError('zip_code', {
+          message: "Sorry, we don't yet have service in this area, please try back on a future date.",
+        })
+        return
+      }
+    } catch (err) {
+      console.error('zip validation request failed, proceeding:', err)
+    } finally {
+      setIsChecking(false)
+    }
+
     setField('zip_code', data.zip_code)
     setField('own_rent', data.own_rent ?? null)
     setField('water_source', data.water_source ?? null)
@@ -174,7 +198,7 @@ export default function Step01() {
       {/* Bottom action */}
       <div className="shrink-0 bg-white/90 backdrop-blur-lg border-t border-surface-container-high px-6 py-4">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Button type="submit">Next</Button>
+          <Button type="submit" isLoading={isChecking}>Next</Button>
         </form>
       </div>
     </div>
