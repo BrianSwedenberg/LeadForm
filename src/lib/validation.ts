@@ -1,9 +1,11 @@
 import { z } from 'zod'
+import { validateZip } from '../utils/validateZip'
 
 export const step1Schema = z.object({
   zip_code: z
     .string()
-    .regex(/^\d{5}$/, 'Please enter a valid 5-digit zip code'),
+    .regex(/^\d{5}$/, 'Please enter a valid 5-digit zip code')
+    .refine(validateZip, "Sorry, we don't yet have service in this area, please try back on a future date."),
   own_rent: z.enum(['Own', 'Rent']).nullable().optional(),
   water_source: z.enum(['Well Water', 'City Water']).nullable().optional(),
   taste_odor: z.enum(['Yes', 'No']).nullable().optional(),
