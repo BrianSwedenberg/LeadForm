@@ -2,17 +2,20 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { step1Schema, type Step1Fields } from '../../lib/validation'
 import { useFormStore } from '../../store/formStore'
+import { useZipStore } from '../../store/zipStore'
 import ProgressBar from '../ui/ProgressBar'
 import Button from '../ui/Button'
 
 export default function Step01() {
   const { formData, setField, goToNextStep, currentStep } = useFormStore()
+  const { status: zipStatus, isZipAllowed } = useZipStore()
 
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    setError,
     formState: { errors },
   } = useForm<Step1Fields>({
     resolver: zodResolver(step1Schema),
@@ -29,6 +32,16 @@ export default function Step01() {
   const tasteOdor = watch('taste_odor')
 
   const onSubmit = (data: Step1Fields) => {
+    // If the prefetch errored, fail open and let the user proceed rather than
+    // blocking them on a background fetch failure.
+    if (zipStatus !== 'error' && !isZipAllowed(data.zip_code)) {
+      setError('zip_code', {
+        message:
+          "Sorry, we don't yet have service in this area, please try back on a future date.",
+      })
+      return
+    }
+
     setField('zip_code', data.zip_code)
     setField('own_rent', data.own_rent ?? null)
     setField('water_source', data.water_source ?? null)
@@ -174,7 +187,9 @@ export default function Step01() {
       {/* Bottom action */}
       <div className="shrink-0 bg-white/90 backdrop-blur-lg border-t border-surface-container-high px-6 py-4">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Button type="submit">Next</Button>
+          <Button type="submit" disabled={zipStatus === 'loading'}>
+            {zipStatus === 'loading' ? 'Checking...' : 'Next'}
+          </Button>
         </form>
       </div>
     </div>

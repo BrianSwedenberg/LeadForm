@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFormStore } from './store/formStore'
+import { useZipStore } from './store/zipStore'
 import Header from './components/ui/Header'
 import Step01 from './components/steps/Step01'
 import Step02 from './components/steps/Step02'
@@ -16,6 +18,12 @@ const STEPS = {
 export default function App() {
   const currentStep = useFormStore((s) => s.currentStep)
   const hasSubmitted = useFormStore((s) => s.hasSubmitted)
+  const fetchAllowedZips = useZipStore((s) => s.fetchAllowedZips)
+
+  // Prefetch the allowed zip list in the background on mount — does not block rendering.
+  useEffect(() => {
+    fetchAllowedZips()
+  }, [fetchAllowedZips])
 
   // After successful submission, show Step04
   const activeStep = hasSubmitted ? 4 : (currentStep as keyof typeof STEPS)
