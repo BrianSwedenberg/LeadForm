@@ -37,9 +37,14 @@ export default function Step01() {
       `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/validate-zip`
     setIsChecking(true)
     try {
+      const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
       const res = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${anonKey}`,
+          'apikey': anonKey,
+        },
         body: JSON.stringify({ zip: data.zip_code }),
       })
       const result = await res.json()
