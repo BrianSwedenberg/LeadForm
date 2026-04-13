@@ -32,7 +32,9 @@ export default function Step01() {
   const tasteOdor = watch('taste_odor')
 
   const onSubmit = async (data: Step1Fields) => {
-    const url = import.meta.env.VITE_ZIP_VALIDATE_URL
+    const url =
+      import.meta.env.VITE_ZIP_VALIDATE_URL ??
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/validate-zip`
     setIsChecking(true)
     try {
       const res = await fetch(url, {
