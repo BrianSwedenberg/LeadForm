@@ -7,8 +7,15 @@
 
 ## Phase
 
-**Phase 2 — Complete**
-Form is live on Vercel and submitting leads to Supabase successfully.
+**Phase 3 — Complete**
+Attribution fields (`full_domain`, `lead_submission_page`, `root_domain`) added to `Leads_Metadata` and auto-populated from `window.location` at submission time. No UI changes.
+
+---
+
+## Next
+
+**Zip code restriction feature** — implement across the three experimental branches.
+Restricts form availability based on the submitted zip code; work spans the branching strategy defined for that feature.
 
 ---
 
