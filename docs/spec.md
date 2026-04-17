@@ -6,11 +6,11 @@
 ### ✅ Phase 2 — Complete  
 4 step lead form that is live on prod (vercel) and submits leads to supabase successfully 
 
-### 🔄 Phase 3 — In Progress
+### 🔄 Phase 3 — Complete
 See PHASE_3.md for active task scope.
 
-
-
+### 🔄 Phase 4 — In Progress
+See webflow_embed.md for active task scope.
 
 # **Project Spec — \[Water Lead Form\]**
 
