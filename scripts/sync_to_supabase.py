@@ -64,4 +64,7 @@ try:
         cleaned_rows,
         ignore_duplicates=False
     ).execute()
-    prin
+    print(f"Successfully upserted {len(cleaned_rows)} rows into {SUPABASE_TABLE}")
+except Exception as e:
+    print(f"Upsert failed: {e}")
+    raise
