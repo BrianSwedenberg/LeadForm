@@ -22,7 +22,7 @@ export default function App() {
   const StepComponent = STEPS[activeStep] ?? Step01
 
   return (
-    <div className="bg-surface text-on-surface h-screen flex flex-col overflow-hidden">
+    <div className="bg-surface text-on-surface h-full flex flex-col overflow-hidden">
       <Header />
       <main className="flex-1 overflow-hidden">
         <AnimatePresence mode="wait">

@@ -137,3 +137,15 @@ Inserts into `Leads` then `Leads_Metadata` atomically. Returns void.
 
 - `database.types.ts` does not enumerate RPCs — `supabase.rpc` is cast to `any` in `submitLead.ts`
 - address1, address2, city, state, zip columns exist in schema but are not collected by the current form
+
+## Future: Embed Bundle Size Optimization
+
+Current embed bundle: ~867 KB raw / ~259 KB gzip — exceeds the 80 KB spec target.
+The two heavy deps driving this are:
+
+| Dep | Estimated gzip savings | Approach |
+|-----|------------------------|----------|
+| `@supabase/supabase-js` | ~100–130 KB | Replace with a raw `fetch` POST to the Supabase REST RPC endpoint — we only call `submit_lead()` once |
+| `framer-motion` | ~50–80 KB | Replace `AnimatePresence`/`motion` step transitions with CSS transitions in `App.tsx` |
+
+Tackling both could bring the bundle to ~80–120 KB gzip. Deferred — validate embed in Webflow first.

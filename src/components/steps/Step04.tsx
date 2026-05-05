@@ -37,16 +37,6 @@ export default function Step04() {
             </p>
           </div>
 
-          {/* CTA */}
-          <div className="pt-4">
-            <button
-              type="button"
-              className="w-full bg-primary text-on-primary-container py-5 px-8 rounded-full font-headline font-bold text-lg shadow-lg active:scale-95 transition-all duration-200"
-              onClick={() => window.location.reload()}
-            >
-              Return to Home
-            </button>
-          </div>
         </div>
 
         {/* Support callout */}
