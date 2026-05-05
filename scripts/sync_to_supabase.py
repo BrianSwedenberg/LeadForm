@@ -32,14 +32,16 @@ cleaned_rows = []
 skipped = 0
 
 for row in rows:
-    # Skip rows missing the unique key — can't upsert without it
-    if not row.get("ID"):
+    # get_all_records() lowercases headers, so sheet "ID" comes in as "id"
+    row_id = row.get("id") or row.get("ID")
+    
+    if not row_id:
         print(f"Skipping row missing ID: {row}")
         skipped += 1
         continue
 
     cleaned_rows.append({
-        "id":        row["ID"],                                                    # Sheet "ID" → Supabase "id"
+        "id":        row_id,
         "FirstName": row.get("FirstName", "").strip(),
         "LastName":  row.get("LastName", "").strip(),
         "Address":   row.get("Address", "").strip(),
@@ -55,14 +57,11 @@ print(f"Prepared {len(cleaned_rows)} rows for upsert, skipped {skipped} invalid 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # --- Upsert ---
-# on_conflict="id" tells Supabase: if a row with this id exists, update it;
-# otherwise insert it. This is the production pattern when you own the unique key.
+# ignoreDuplicates=False tells supabase-py to update on conflict
+# The primary key (id) is used automatically for conflict detection
 try:
     response = supabase.table(SUPABASE_TABLE).upsert(
         cleaned_rows,
-        on_conflict="id"
+        ignore_duplicates=False
     ).execute()
-    print(f"Successfully upserted {len(cleaned_rows)} rows into {SUPABASE_TABLE}")
-except Exception as e:
-    print(f"Upsert failed: {e}")
-    raise  # Re-raise so GitHub Actions marks the run as failed
+    prin
