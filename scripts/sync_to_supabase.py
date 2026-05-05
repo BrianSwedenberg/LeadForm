@@ -12,7 +12,7 @@ SERVICE_ACCOUNT_JSON = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
 # --- Sheet config ---
 SPREADSHEET_ID = "1VE8yaSyhVP3u4a8sVR0QZLowoEe7vPWgYJ69rD2Rqag"
 SHEET_NAME = "Sheet1"
-SUPABASE_TABLE = "your_table_name"  # ← update this to match your Supabase table name
+SUPABASE_TABLE = "ScratchPeople"
 
 # --- Connect to Google Sheets ---
 creds_dict = json.loads(SERVICE_ACCOUNT_JSON)
@@ -27,7 +27,6 @@ sheet = gc.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 rows = sheet.get_all_records()
 print(f"Fetched {len(rows)} rows from Google Sheets")
 
-# Normalize each row to match Supabase column types
 cleaned_rows = []
 for row in rows:
     cleaned_rows.append({
@@ -43,6 +42,8 @@ for row in rows:
 # --- Connect to Supabase ---
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# --- Upsert into Supabase ---
-response = supabase.table(SUPABASE_TABLE).upsert(cleaned_rows).execute()
-print(f"Upserted {len(cleaned_rows)} rows into Supabase")
+# --- Insert into Supabase ---
+# Using insert (not upsert) since id is auto-generated and there's no
+# natural unique key to match on for updates
+response = supabase.table(SUPABASE_TABLE).insert(cleaned_rows).execute()
+print(f"Inserted {len(cleaned_rows)} rows into ScratchPeople")
