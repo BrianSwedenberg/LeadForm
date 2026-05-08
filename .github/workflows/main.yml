@@ -2,7 +2,7 @@ name: Sync Google Sheets to Supabase
 
 on:
   schedule:
-    - cron: '0 * * * *'   # Every hour at :00 UTC
+    - cron: '0 */2 * * *'   # Every other hour at :00 UTC
   workflow_dispatch:        # Adds manual "Run workflow" button
 
 jobs:
