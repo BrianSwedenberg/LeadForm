@@ -12,7 +12,7 @@ SERVICE_ACCOUNT_JSON = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
 # --- Config ---
 SPREADSHEET_ID = "1VE8yaSyhVP3u4a8sVR0QZLowoEe7vPWgYJ69rD2Rqag"
 SHEET_NAME = "Sheet1"
-SUPABASE_TABLE = "ScratchPeople"
+SUPABASE_TABLE = "ScratchPeople_staging"
 
 # --- Connect to Google Sheets ---
 creds_dict = json.loads(SERVICE_ACCOUNT_JSON)
